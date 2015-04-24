@@ -1,0 +1,39 @@
+* Components
+** Delta Acts
+ - Goal states, a set of methods (planboxes) for achieving goal states, and a decision procedure for ordering/prioritizing methods for achieving goals
+ - Results ultimately in an action module activating
+*** Example - DeltaProx
+**** Planbox 0: Does X think that Y is already near Z?
+** Planboxes
+ - Has preconditions which define whether they can be used at all, or used before/after other planboxes
+ - "Unconscious" preconditions - would never occur to you to try them
+ - "Uncontrollable" preconditions - cannot be made true by the actor if they are already true
+ - "Plantime" preconditions - preconditions evaluated at time of planbox selection (plantime)
+ - "Social" preconditions - take into account social dynamics
+ - "Contextual" preconditions - ensure that plans do not undo goals already achieved in the pursuit of the final goal
+** Sigma States
+ - Physical needs which must be satisfied.
+ - Unlike delta-acts they are not nested as subgoals of another goal. They arise spontaneously and periodically.
+** Action Modules
+ - PTRANS
+ - MTRANS
+ - ATRANS
+** Assertion Mechanism
+ - Called by action modules - records the fact of an occurance
+** Reaction modules
+ - Usually knowledge propagation inferences
+
+* Our implementation
+** Classes
+*** Planbox
+ - Preconditions - Triples that must be true
+ - action
+ - Postconditions
+ - Postact
+*** Action Module
+
+* TO DO
+** TODO Write tests for Graph class before you write any more damn code
+** TODO Start Actor class
+*** TODO Has knowledge graph
+
