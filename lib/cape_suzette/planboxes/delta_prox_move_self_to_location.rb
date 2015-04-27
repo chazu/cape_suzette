@@ -3,11 +3,11 @@ require './base'
 module CapeSuzette
   module Planbox
     class FooPlanbox < Base
-      set_action "shit"
+      set_action CapeSuzette::Action::PTrans
 
       validate :agent, { |x| x.class == Actor }
       
-      precondition :agent, :is, :sentient
+      Precondition, :is, :sentient
       precondition :agent, :is, :motile
     end
   end

@@ -1,31 +1,44 @@
 module CapeSuzette
-  module Planbox
+  module Planboxes
     class Base
 
-      @@action = nil
-      @@preconditions = []
+      @@name           = nil
+      @@action         = nil
+      @@preconditions  = []
       @@postconditions = []
-      @@postaction = nil
+      @@postaction     = nil
 
-      def initialize
+      def initialize agent: nil,
+                     subject: nil,
+                     env: nil
+
         if self.class == Base
           raise NotImplementedError, "Base should not be instantiated, only subclassed."
         end
       end
 
-      def self.set_action action
+      def self.validate
+        #TODO Validate that we pass in the right args on init of subclass
+      end
+
+      def self.name name
+        @@name = name
+      end
+      
+      def self.action action
         @@action = action
       end
 
-      def self.add_precondition precondition
+      def self.precondition precondition
+        # TODO Validate predicate, subject and object
         @@preconditions << precondition
       end
 
-      def self.add_postcondition postcondition
+      def self.postcondition postcondition
         @@postconditions << postcondition
       end
 
-      def self.set_postaction action
+      def self.postaction action
         @@postaction = action
       end
       

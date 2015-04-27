@@ -1,5 +1,5 @@
 module CapeSuzette
-  module Action
+  module Actions
     class Base
       # TODO
     end

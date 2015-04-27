@@ -1,7 +1,7 @@
 require 'dag'
 
 module CapeSuzette
-  module Graph
+  module Graphs
 
     PREDICATES = [
       :knows,
@@ -52,12 +52,19 @@ module CapeSuzette
       end
       
       def add_triple subject, predicate, object
-        
         ensure_vertices_exist_for_objects subject, object
         subject_vertex, object_vertex = vertices_for_objects subject, object
 
         if !triple_exists? subject, predicate, object
           add_edge from: subject_vertex, to: object_vertex, properties: {predicate: predicate}
+        end
+      end
+
+      # TODO Spec this sucker out pls, thx
+      def remove_triple subject, predicate, object
+        edges = subject.outgoing_edges.select { |edge| edge.destination[:obj] == object }
+        edges.each do |edge|
+          subject.outgoing_edges.delete(edge)
         end
       end
 
