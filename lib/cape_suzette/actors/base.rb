@@ -2,14 +2,16 @@ module CapeSuzette
   module Actors
     class Base
 
-      def initialize args
-        @sigma_states = []
+      attr_accessor :location, :name
 
-        @name = args[:name]
-        @health = args[:health] || 0
-        @hunger = args[:hunger] || 0
-        @tiredness = args[:tiredness] || 0
+      def initialize args
+        @name       = args[:name]
+        @health     = args[:health] || 0
+        @hunger     = args[:hunger] || 0
+        @tiredness  = args[:tiredness] || 0
         @loneliness = args[:loneliness] || 0
+        @location   = nil
+        @goal_stack = []
       end
 
       def become_hungrier
@@ -28,6 +30,16 @@ module CapeSuzette
         @health += 1
       end
 
+      def activate_goal delta_class, options
+        # TODO This is not idiomatic, I'm sure of it
+        @goal_stack.push(delta_class.new({agent: self, target: options[:target]}))
+      end
+      
+      def set_location map
+        map.contents << self
+        @location = map
+      end
+
       def clamp_stats
         [@health, @hunger, @tiredness, @loneliness].each do |stat|
           if stat > 10
@@ -39,12 +51,22 @@ module CapeSuzette
       end
       
       def act
+        # Find the most relevant delta act
+        # Try a plan
+        delta = nil
+        if !@goal_stack.empty?
+          delta = @goal_stack[0]
+        end
+        if delta
+
+          delta.execute self
+          if delta.goal_state_achieved?
+            @goal_stack.delete(delta)
+          end
+        end
       end
 
       def react
-      end
-
-      def enter_sigma_state sigma_state
       end
     end
   end

@@ -7,7 +7,8 @@ module CapeSuzette
       @@preconditions  = []
       @@postconditions = []
       @@postaction     = nil
-
+      @@validations    = []
+      
       def initialize agent: nil,
                      subject: nil,
                      env: nil
@@ -17,8 +18,8 @@ module CapeSuzette
         end
       end
 
-      def self.validate
-        #TODO Validate that we pass in the right args on init of subclass
+      def self.validate(&block)
+        @@validations << block
       end
 
       def self.name name
@@ -44,6 +45,10 @@ module CapeSuzette
       
       def action
         @@action
+      end
+
+      def execute options
+        @@action.execute options
       end
 
       def preconditions

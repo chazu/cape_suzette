@@ -1,17 +1,14 @@
-require './base'
-
 module CapeSuzette
-  module Planbox
-    class FooPlanbox < Base
-      set_action CapeSuzette::Action::PTrans
+  module Planboxes
+    class MoveSelfToOtherLocation < Base
+      action CapeSuzette::Actions::PTrans
 
-      validate :agent, { |x| x.class == Actor }
+      validate { |x| x.class == Actor }
       
-      Precondition, :is, :sentient
-      precondition :agent, :is, :motile
+      precondition [:is, :sentient]
+      precondition [:agent, :is, :motile]
+
+
     end
   end
 end
-
-a = CapeSuzette::Planbox::FooPlanbox.new
-puts a.action

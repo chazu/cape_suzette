@@ -1,12 +1,12 @@
 module CapeSuzette
   module Maps
     class Base
-      attr_accessor :contents, :doors
+      attr_accessor :contents, :doors, :name
 
-      def initialize options
+      def initialize args                     
         @container = nil
-        @name      = options[:name]     || "void"
-        @contents  = options[:contents] || [];
+        @name      = args[:name]     || "void"
+        @contents  = args[:contents] || [];
         @siblings  = [];
         @doors     = [];
       end
@@ -16,15 +16,21 @@ module CapeSuzette
         room.container = self
       end
 
+      def container= container
+        @@container = container
+      end
+      
       def set_location map
-        # Remove self from contents of old room
-        # Set own location
-        # 
-        # Add self to contents of room
+        # Remove self from old room, make our container new room, add self to contents of new
+        # container
+        @container.contents.delete(self)
+
+        @container = map
+        @container.contents << self
       end
 
       def connect_to_sibling sibling
-        self. << sibling
+        self.doors << sibling
         sibling.doors << self
       end
 
