@@ -1,28 +1,27 @@
 module CapeSuzette
   module World
     class Location
-      attr_accessor :doors
+      attr_accessor :doors, :contents, :place_contents
 
       def initialize name: "void",
-                     contents: []
+                     contents: [],
+                     place_contents: []
 
-        @container     = nil
-        @name          = name
-        @contents      = contents
-        @siblings      = []
-        @doors         = []
+        @container      = nil
+        @name           = name
+        @contents       = contents
+        @place_contents = place_contents
+        @siblings       = []
+        @doors          = []
       end
 
       def place_name
         @name
       end
 
-      def place_contents
-        @contents
-      end
 
       def add_room room
-        @contents << room
+        @place_contents << room
         room.container = self
         # Return the room
         room

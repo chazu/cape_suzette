@@ -2,7 +2,14 @@ module CapeSuzette
   module Actors
     class Base
 
-      attr_accessor :location, :name
+      attr_accessor :location,
+                    :name,
+                    :sickness,
+                    :hunger,
+                    :tiredness,
+                    :loneliness,
+                    :fear,
+                    :depression
 
       def initialize args
         @name       = args[:name]
@@ -50,7 +57,7 @@ module CapeSuzette
       end
 
       def set_location map
-        map.place_contents << self
+        map.contents << self
         @location = map
       end
 

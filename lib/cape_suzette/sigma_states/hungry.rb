@@ -7,11 +7,11 @@ module CapeSuzette
       end
       
       def test actor
-        actor.hunger < -3
+        actor.hunger > 5
       end
 
       def delta_acts
-        # DeltaActs::FindFood
+        DeltaActs::FindFood
         DeltaActs::EatFood
       end
     end

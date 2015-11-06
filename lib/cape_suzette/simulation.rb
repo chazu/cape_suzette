@@ -1,6 +1,13 @@
+require 'logger'
+
+
 module CapeSuzette
   module Simulation
     class Simulation
+
+      def roll_d6
+        rand(6) + 1
+      end
 
       @@place_names = [
         "brook",
@@ -30,6 +37,10 @@ module CapeSuzette
       ]
 
       def initialize
+
+        @log = Logger.new(STDOUT)
+        @log.level = Logger::DEBUG
+
         @reality = CapeSuzette::Graphs::Graph.new
 
         @kaze = Actors::Base.new({name: "Kaze"})
@@ -51,13 +62,14 @@ module CapeSuzette
       end
 
       def run
-        @actors.sample.activate_goal(DeltaActs::DeltaProx, {target: @lou})
-        while true
+        40.times do
           tick
         end
       end
 
       def tick
+        @log.info("Time passes...")
+        update_actor_state
         @actors.each do |actor|
           actor.clamp_stats
           evaluate_sigma_states(actor)
@@ -65,11 +77,28 @@ module CapeSuzette
         end
       end
 
+      def update_actor_state
+        # TODO Factor out stats into a class so we don't have to enumerate them manually
+        # also so we can encapsulate the conditions which lead to those stats fluctuating [naturally]
+        @actors.each do |actor|
+          # Roll a 4 or higher on a d6
+          if roll_d6 >= 4 && (actor.hunger < 10 && actor.hunger > -10)
+            @log.debug("#{actor.name} becomes a bit hungrier (#{actor.instance_variable_get("@hunger")})")
+            actor.become_hungrier
+          end
+
+          if roll_d6 >= 4 && (actor.loneliness < 10 && actor.loneliness > -10)
+            @log.debug("#{actor.name} becomes a bit lonlier (#{actor.instance_variable_get("@loneliness")})")
+            actor.become_lonelier
+          end
+        end
+      end
+
       def evaluate_sigma_states actor
         SigmaStates::Base.descendants.each do |state|
           if state.test actor
             actor.sigma_states << state
-            puts "#{actor.name} is #{state.name}"
+            @log.info("#{actor.name} is #{state.name}")
           end
         end
       end 

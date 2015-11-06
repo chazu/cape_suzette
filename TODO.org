@@ -33,6 +33,11 @@
 *** Action Module
 
 * TO DO
+** TODO Subclass Graph into objective starting knowledge graph
+** TODO Add bread - bread is food
+** TODO Add FindFood delta act
+** TODO Make kaze find food
+** TODO Make kaze eat food
 ** TODO Refactor actor state into something simpler
 ** TODO Brainstorm actor state based on hierarchy of needs...
  - Actors delegate some state to environment - e.g. an actor in antarctica is cold - modifications should be made for, say, clothing, fur, etc.

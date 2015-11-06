@@ -10,7 +10,6 @@ require "./lib/cape_suzette/delta_acts/base"
 require "./lib/cape_suzette/delta_acts/delta_prox"
 require "./lib/cape_suzette/scripts/scripts"
 require "./lib/cape_suzette/sigma_states/base"
-require "./lib/cape_suzette/initialization.rb"
 require "./lib/cape_suzette/simulation.rb"
 
 module CapeSuzette
@@ -18,10 +17,9 @@ module CapeSuzette
   include Actions
   include DeltaActs
   include Graphs
-  include Initialization
-  include World
   include Planboxes
   include Scripts
   include SigmaStates
   include Simulation
+  include World  
 end
