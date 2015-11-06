@@ -30,8 +30,12 @@ module CapeSuzette
         @health += 1
       end
 
+      
       def activate_goal delta_class, options
         # TODO This is not idiomatic, I'm sure of it
+        # ALSO TODO - We shouldn't activate goals, we should activate sigma states,
+        # which instigate the search for delta acts, which then decompose into
+        # planboxes, scripts, smaller delta acts or combinations of those three
         @goal_stack.push(delta_class.new({agent: self, target: options[:target]}))
       end
       

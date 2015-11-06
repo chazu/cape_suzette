@@ -13,6 +13,34 @@ module CapeSuzette
     end 
 
     def self.begin
+
+      place_names = [
+        "brook",
+        "dale",
+        "ravine",
+        "field",
+        "grove",
+        "hillside",
+        "bog",
+        "lakeside",
+        "grotto"
+      ]
+
+      place_descriptors = [
+        "shady",
+        "quiet",
+        "verdant",
+        "humid",
+        "whispering",
+        "refulgent",
+        "ghostly",
+        "sweet-smelling",
+        "secluded",
+        "slippery",
+        "peaceful",
+        "busy"
+      ]
+
       # Create objective reality graph
       reality = CapeSuzette::Graphs::Graph.new
       # Populate it with knowledgebase
@@ -26,13 +54,17 @@ module CapeSuzette
 
       #Create a map
       world = World::Location.new({name: "World"})
-      room1 = world.add_room(World::Location.new({name: "room 1"}))
-      room2 = world.add_room(World::Location.new({name: "room 2"}))
-      room2.connect_to_sibling room1
-      
+
+      room_count = 5 + rand(5);
+      room_count.times do
+        new_room = World::Location.new({name: "#{place_names.sample} #{place_descriptors.sample}"})
+        world.add_room(new_room)
+        new_room.connect_to_sibling world.place_contents.sample
+      end
+
       # Put actors in the world
-      lou.set_location(room2)
-      kaze.set_location(room1)
+      lou.set_location(world.place_contents.sample)
+      kaze.set_location(world.place_contents.sample)
 
       # Activate DELTA PROX for Kaze
       kaze.activate_goal(DeltaActs::DeltaProx, {target: lou})
