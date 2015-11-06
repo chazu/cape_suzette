@@ -8,10 +8,11 @@ module CapeSuzette
       @@postconditions = []
       @@postaction     = nil
       @@validations    = []
+      @@env_proc       = nil
       
       def initialize agent: nil,
                      subject: nil,
-                     env: nil
+                     env: nil # TODO Make this &rest keyword args OR block? options?
 
         if self.class == Base
           raise NotImplementedError, "Base should not be instantiated, only subclassed."
@@ -28,6 +29,10 @@ module CapeSuzette
       
       def self.action action
         @@action = action
+      end
+
+      def self.env env_proc
+        @@env_proc = env_proc
       end
 
       def self.precondition precondition
@@ -48,7 +53,8 @@ module CapeSuzette
       end
 
       def execute options
-        @@action.execute options
+        evaluated_env = @@env_proc.call(options[:agent])
+        @@action.execute options, evaluated_env
       end
 
       def preconditions

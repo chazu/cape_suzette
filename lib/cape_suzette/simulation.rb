@@ -1,6 +1,5 @@
 require 'logger'
-
-
+require 'pry'
 module CapeSuzette
   module Simulation
     class Simulation
@@ -57,12 +56,15 @@ module CapeSuzette
           new_room.connect_to_sibling @world.place_contents.sample
         end
 
-        @actors.each { |x| x.set_location @world.place_contents.sample }
+        # Add items
+        bread_location = @world.place_contents.sample
+        bread_location.contents << CapeSuzette::Items::Item.new(:bread, bread_location)
 
+        @actors.each { |x| x.set_location @world.place_contents.sample }
       end
 
       def run
-        40.times do
+        30.times do
           tick
         end
       end
@@ -96,7 +98,7 @@ module CapeSuzette
 
       def evaluate_sigma_states actor
         SigmaStates::Base.descendants.each do |state|
-          if state.test actor
+          if state.sigma_test(actor) && !actor.sigma_states.include?(state)
             actor.sigma_states << state
             @log.info("#{actor.name} is #{state.name}")
           end

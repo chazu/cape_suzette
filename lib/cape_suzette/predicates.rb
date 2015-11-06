@@ -9,9 +9,7 @@ module CapeSuzette
     :is_type_of,
     :is_instance_of,
     :knows_thing,
-    :knows_actor
+    :knows_actor,
+    :is_colocated_with
   ]
-
-  # Map
-  
 end

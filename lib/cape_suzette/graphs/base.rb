@@ -51,7 +51,11 @@ module CapeSuzette
         end
       end
       
-      def add_triple subject, predicate, object
+      def add_triple triple_array
+        subject   = triple_array[0]
+        predicate = triple_array[1]
+        object    = triple_array[2]
+
         ensure_vertices_exist_for_objects subject, object
         subject_vertex, object_vertex = vertices_for_objects subject, object
 

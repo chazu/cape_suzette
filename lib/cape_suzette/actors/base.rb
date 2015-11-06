@@ -2,7 +2,9 @@ module CapeSuzette
   module Actors
     class Base
 
-      attr_accessor :location,
+      attr_accessor :knowledge,
+                    :sigma_states,
+                    :location,
                     :name,
                     :sickness,
                     :hunger,
@@ -12,6 +14,8 @@ module CapeSuzette
                     :depression
 
       def initialize args
+        @knowledge  = CapeSuzette::Graphs::KnowledgeGraph.new
+
         @name       = args[:name]
         @sickness   = args[:sickness]   || 0
         @hunger     = args[:hunger]     || 0
@@ -21,7 +25,9 @@ module CapeSuzette
         @depression = args[:depression] || 0
 
         @location   = nil
-        @goal_stack = []
+
+        @sigma_states = []
+        @goal_stack   = []
       end
 
       def become_hungrier

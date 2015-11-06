@@ -33,10 +33,17 @@
 *** Action Module
 
 * TO DO
-** TODO Subclass Graph into objective starting knowledge graph
-** TODO Add bread - bread is food
+
+** DONE Add bread - bread is food
+   CLOSED: [2015-11-06 Fri 12:18]
+ - Add item class
+ - Items have properties in the form of triples?
+ - Knowledge graph represents the properties known by actors at simulation init
+
 ** TODO Add FindFood delta act
+
 ** TODO Make kaze find food
+ - Actors evaluate options and choose strategies when sigma states activate
 ** TODO Make kaze eat food
 ** TODO Refactor actor state into something simpler
 ** TODO Brainstorm actor state based on hierarchy of needs...

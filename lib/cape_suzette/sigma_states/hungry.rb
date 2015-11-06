@@ -2,15 +2,15 @@ module CapeSuzette
   module SigmaStates
     class SigmaHunger < Base
 
-      def name
+      def self.name
         "Hungry"
       end
       
-      def test actor
+      def self.sigma_test actor
         actor.hunger > 5
       end
 
-      def delta_acts
+      def self.delta_acts
         DeltaActs::FindFood
         DeltaActs::EatFood
       end
