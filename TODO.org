@@ -33,13 +33,6 @@
 *** Action Module
 
 * TO DO
-
-** DONE Add bread - bread is food
-   CLOSED: [2015-11-06 Fri 12:18]
- - Add item class
- - Items have properties in the form of triples?
- - Knowledge graph represents the properties known by actors at simulation init
-
 ** TODO Add FindFood delta act
 
 ** TODO Make kaze find food
@@ -57,3 +50,18 @@
 
 ** DONE Fix bug with place names in ptrans not showing up
    CLOSED: [2015-11-05 Thu 23:25]
+
+** DONE Add bread - bread is food
+   CLOSED: [2015-11-06 Fri 12:18]
+ - Add item class
+ - Items have properties in the form of triples?
+ - Knowledge graph represents the properties known by actors at simulation init
+
+
+
+AOGJASGIASD
+
+We need to be able to 
+- parameterize data to delta acts on instantiation
+- have parameterized data passed into planboxes from deltas
+- decompose delta acts into planboxes

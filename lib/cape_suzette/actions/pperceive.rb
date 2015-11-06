@@ -8,11 +8,12 @@ module CapeSuzette
       @log.level = Logger::DEBUG
 
       # PPerceive - Learn something via sensory perception
-      def self.execute options
-        options[:env].each do |triple|
-          @log.info("#{options[:agent]} learns #{triple.to_s}")
-          options[:agent].knowledge.add_triple
+      def self.execute options, env
+        env.each do |triple|
+          @log.info("#{options[:agent]} learns #{triple}")
+          options[:agent].knowledge.add_triple triple
         end
+      end
     end
   end
 end

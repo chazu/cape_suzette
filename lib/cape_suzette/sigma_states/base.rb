@@ -2,20 +2,19 @@ module CapeSuzette
   module SigmaStates
     class Base
 
+      attr_accessor :plan
+
+      def initialize
+        @plan = nil
+      end
+
       def self.descendants
         @descendants ||= []
       end
 
-      
       def self.inherited descendant
         descendants << descendant
       end
-
-      # def self.all_descendants
-      #   descendants.inject([]) do |all, descendant|
-      #     (all << descendant) + descendant.all_descendants
-      #   end
-      # end
 
       def name
         raise NotImplementedError, "Must be implemented by subclass, fool"

@@ -64,7 +64,7 @@ module CapeSuzette
       end
 
       def run
-        30.times do
+        20.times do
           tick
         end
       end
@@ -98,8 +98,8 @@ module CapeSuzette
 
       def evaluate_sigma_states actor
         SigmaStates::Base.descendants.each do |state|
-          if state.sigma_test(actor) && !actor.sigma_states.include?(state)
-            actor.sigma_states << state
+          if state.sigma_test(actor) && !actor.sigma_states.any? { |x| x.class == state }
+            actor.sigma_states << state.new
             @log.info("#{actor.name} is #{state.name}")
           end
         end

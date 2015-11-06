@@ -24,7 +24,7 @@ module CapeSuzette
       end
 
       def self.name name
-        @@name = name
+        @@name = namee
       end
       
       def self.action action
@@ -53,7 +53,7 @@ module CapeSuzette
       end
 
       def execute options
-        evaluated_env = @@env_proc.call(options[:agent])
+        evaluated_env = @@env_proc ? @@env_proc.call(options[:agent]) : nil
         @@action.execute options, evaluated_env
       end
 

@@ -2,7 +2,7 @@ module CapeSuzette
   module SigmaStates
     class SigmaHunger < Base
 
-      def self.name
+      def name
         "Hungry"
       end
       
@@ -10,9 +10,18 @@ module CapeSuzette
         actor.hunger > 5
       end
 
-      def self.delta_acts
-        DeltaActs::FindFood
-        DeltaActs::EatFood
+      def delta_acts
+        [
+          DeltaActs::DeltaFindFood
+        ]
+      end
+
+      def parameters
+        # The state to be parameterized on strategy instantiation
+        # TODO This should be expressed as triples, no?
+        {
+          target_type: :food
+        }
       end
     end
   end

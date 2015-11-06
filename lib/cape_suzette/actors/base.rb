@@ -1,6 +1,9 @@
+require 'logger'
+
 module CapeSuzette
   module Actors
     class Base
+      
 
       attr_accessor :knowledge,
                     :sigma_states,
@@ -14,6 +17,10 @@ module CapeSuzette
                     :depression
 
       def initialize args
+
+        @log = Logger.new(STDOUT)
+        @log.level = Logger::DEBUG
+        
         @knowledge  = CapeSuzette::Graphs::KnowledgeGraph.new
 
         @name       = args[:name]
@@ -76,22 +83,34 @@ module CapeSuzette
           end
         end
       end
-      
+
+      def unhandled_sigma_states
+        sigma_states.reject { |x| x.plan } # Filter out any sigmas we're acting on
+      end
+
+      def choose_strategy sigma_state # Doushio?!?
+        choice = sigma_state.delta_acts[0].new(self, sigma_state)
+        sigma_state.plan = choice
+        @log.info("#{name} decides to #{choice.to_s}")
+        choice
+      end
+
       def act
-        # Find the most relevant delta act
-        # Try a plan
-        delta = nil
-        if !@goal_stack.empty?
-          delta = @goal_stack[0]
-        end
-        if delta
-          delta.execute self
-          if delta.goal_state_achieved?
-            @goal_stack.delete(delta)
+        if unhandled_sigma_states
+          unhandled_sigma_states.each do |sigma|
+            @goal_stack << choose_strategy(sigma)
+          end
+
+          if !@goal_stack.empty?
+            delta = @goal_stack[0]
+            delta.execute
+            if delta.goal_state_achieved?
+              @goal_stack.delete(delta)
+            end
           end
         end
       end
-
+      
       def react
       end
     end

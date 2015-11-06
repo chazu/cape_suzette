@@ -4,8 +4,9 @@ module CapeSuzette
       @@planboxes = [
       ]
 
-      def initialize(options)
-        @options = options
+      def initialize(agent, sigma)
+        @agent = agent
+        @sigma_parameters = sigma.parameters
       end
 
       @@goal_state = nil
@@ -31,12 +32,12 @@ module CapeSuzette
         self.class.planboxes
       end
 
-      def execute actor
+      def execute
         plans = contextualized_planboxes
 
         plan = plans[0].new
         
-        plan.execute ({agent: actor, target: @options[:target]})
+        plan.execute({agent: @agent})
       end
       
       private
