@@ -6,10 +6,13 @@ module CapeSuzette
 
       def initialize args
         @name       = args[:name]
-        @health     = args[:health] || 0
-        @hunger     = args[:hunger] || 0
-        @tiredness  = args[:tiredness] || 0
+        @sickness   = args[:sickness]   || 0
+        @hunger     = args[:hunger]     || 0
+        @tiredness  = args[:tiredness]  || 0
         @loneliness = args[:loneliness] || 0
+        @fear       = args[:fear]       || 0
+        @depression = args[:depression] || 0
+
         @location   = nil
         @goal_stack = []
       end
@@ -30,7 +33,14 @@ module CapeSuzette
         @health += 1
       end
 
-      
+      def become_depressed
+        @depression += 1
+      end
+
+      def become_afraid
+        @fear += 1
+      end
+
       def activate_goal delta_class, options
         # TODO This is not idiomatic, I'm sure of it
         # ALSO TODO - We shouldn't activate goals, we should activate sigma states,
@@ -45,11 +55,11 @@ module CapeSuzette
       end
 
       def clamp_stats
-        [@health, @hunger, @tiredness, @loneliness].each do |stat|
-          if stat > 10
-            stat == 10
-          elsif stat < -10
-            stat = -10
+        [:@sickness, :@hunger, :@tiredness, :@loneliness, :@fear, :@depression].each do |stat|
+          if instance_variable_get(stat) > 10
+            instance_variable_set(stat, 10)
+          elsif instance_variable_get(stat) < -10
+            instance_variable_set(stat, -10)
           end
         end
       end
@@ -62,7 +72,6 @@ module CapeSuzette
           delta = @goal_stack[0]
         end
         if delta
-
           delta.execute self
           if delta.goal_state_achieved?
             @goal_stack.delete(delta)
