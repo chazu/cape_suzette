@@ -38,7 +38,7 @@ module CapeSuzette
         # planboxes, scripts, smaller delta acts or combinations of those three
         @goal_stack.push(delta_class.new({agent: self, target: options[:target]}))
       end
-      
+
       def set_location map
         map.place_contents << self
         @location = map

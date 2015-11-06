@@ -11,6 +11,7 @@ require "./lib/cape_suzette/delta_acts/delta_prox"
 require "./lib/cape_suzette/scripts/scripts"
 require "./lib/cape_suzette/sigma_states/base"
 require "./lib/cape_suzette/initialization.rb"
+require "./lib/cape_suzette/simulation.rb"
 
 module CapeSuzette
   include Actors
@@ -22,4 +23,5 @@ module CapeSuzette
   include Planboxes
   include Scripts
   include SigmaStates
+  include Simulation
 end

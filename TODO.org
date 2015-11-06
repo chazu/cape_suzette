@@ -14,7 +14,7 @@
 ** Sigma States
  - Physical needs which must be satisfied.
  - Unlike delta-acts they are not nested as subgoals of another goal. They arise spontaneously and periodically.
-** Action Modules
+** Action Modules - Create side effects in the world
  - PTRANS
  - MTRANS
  - ATRANS
