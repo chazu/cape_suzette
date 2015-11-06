@@ -5,20 +5,20 @@ module CapeSuzette
       @@planboxes = [
         CapeSuzette::Planboxes::PerceiveItemsAtLocation
       ]
-      @@goal_state = nil
-
       attr_accessor :agent, :target
       
       def initialize options
         super options
 
+        # TODO Evaluate with respect to agent/environment
+        # and pass into planbox instances any relevant data/
+        # logic
+
         @agent = options[:agent]
         @target = options[:target]
       end
 
-      goal_state [:equal,
-                  [:agent, :location],
-                  [:target, :location]]
+      goal_state Proc.new { |sigma| true }
     end
   end
 end

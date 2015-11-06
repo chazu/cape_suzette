@@ -16,13 +16,8 @@ module CapeSuzette
         ]
       end
 
-      def parameters
-        # The state to be parameterized on strategy instantiation
-        # TODO This should be expressed as triples, no?
-        {
-          target_type: :food
-        }
-      end
+      parameters({ target_type: :food })
+
     end
   end
 end

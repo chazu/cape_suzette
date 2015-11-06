@@ -16,9 +16,7 @@ module CapeSuzette
         super agent, sigma
       end
 
-      goal_state [:equal,
-                  [:agent, :location],
-                  [:target, :location]]
+      goal_state Proc.new { |sigma| sigma.agent.contents.any?(x => x.properties.try(:is_food) ) }
 
       
     end

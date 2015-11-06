@@ -6,7 +6,7 @@ module CapeSuzette
 
       def initialize(agent, sigma)
         @agent = agent
-        @sigma_parameters = sigma.parameters
+        @sigma = sigma
       end
 
       @@goal_state = nil
@@ -24,8 +24,7 @@ module CapeSuzette
       end
       
       def goal_state_achieved?
-        test = generate_goal_state_lambda
-        test.call(self)
+        goal_state.call(@sigma)
       end
 
       def contextualized_planboxes
@@ -38,15 +37,6 @@ module CapeSuzette
         plan = plans[0].new
         
         plan.execute({agent: @agent})
-      end
-      
-      private
-      def generate_goal_state_lambda
-        gs = goal_state
-        case goal_state.first
-        when :equal
-          Proc.new { |x| x.send(gs[1][0]).send(gs[1][1]) == x.send(gs[2][0]).send(gs[2][1]) }
-        end
       end
     end
   end

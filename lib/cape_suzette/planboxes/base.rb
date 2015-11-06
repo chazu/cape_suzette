@@ -10,8 +10,7 @@ module CapeSuzette
       @@validations    = []
       @@env_proc       = nil
       
-      def initialize agent: nil,
-                     subject: nil,
+      def initialize sigma: sigma
                      env: nil # TODO Make this &rest keyword args OR block? options?
 
         if self.class == Base

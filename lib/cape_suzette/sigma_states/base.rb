@@ -2,9 +2,10 @@ module CapeSuzette
   module SigmaStates
     class Base
 
-      attr_accessor :plan
+      attr_accessor :plan, :agent
 
-      def initialize
+      def initialize(agent: actor)
+        @agent = agent
         @plan = nil
       end
 
@@ -26,6 +27,14 @@ module CapeSuzette
 
       def delta_acts
         raise NotImplementedError, "Must be implemented by subclass, fool"        
+      end
+
+      def self.parameters params
+        @@parameters = params
+      end
+
+      def parameters
+        @@parameters
       end
     end
   end

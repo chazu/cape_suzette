@@ -33,7 +33,6 @@
 *** Action Module
 
 * TO DO
-** TODO Add FindFood delta act
 
 ** TODO Make kaze find food
  - Actors evaluate options and choose strategies when sigma states activate
@@ -57,11 +56,12 @@
  - Items have properties in the form of triples?
  - Knowledge graph represents the properties known by actors at simulation init
 
+** DONE Add FindFood delta act
+   CLOSED: [2015-11-06 Fri 16:18]
 
-
-AOGJASGIASD
 
 We need to be able to 
 - parameterize data to delta acts on instantiation
-- have parameterized data passed into planboxes from deltas
+- have parameterized data passed into planbox INSTANCES from deltas
 - decompose delta acts into planboxes
+- Figure out how to prioritize/order planboxes when executing a 'strategy' (delta action)

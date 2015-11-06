@@ -5,8 +5,6 @@ module CapeSuzette
       @@planboxes = [
         CapeSuzette::Planboxes::MoveSelfToOtherLocation
       ]
-      @@goal_state = nil
-
       attr_accessor :agent, :target
       
       def initialize options
@@ -16,11 +14,7 @@ module CapeSuzette
         @target = options[:target]
       end
 
-      goal_state [:equal,
-                  [:agent, :location],
-                  [:target, :location]]
-
-      
+      goal_state Proc.new { |sigma| sigma.agent.location == sigma.parameters.target.location }
     end
   end
 end
