@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe CapeSuzette::Graph::Graph do
-  subject { CapeSuzette::Graph::Graph.new }
+describe CapeSuzette::Graphs::Graph do
+  subject { CapeSuzette::Graphs::Graph.new }
     
   context '#vertex_exists' do
 

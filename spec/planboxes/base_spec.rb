@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe CapeSuzette::Planbox::Base do
+describe CapeSuzette::Planboxes::Base do
 
-  subject { CapeSuzette::Planbox::Base }
+  subject { CapeSuzette::Planboxes::Base }
 
   
   it 'should yell if you try to instantiate it' do

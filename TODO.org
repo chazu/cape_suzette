@@ -36,4 +36,5 @@
 ** TODO Write tests for Graph class before you write any more damn code
 ** TODO Start Actor class
 *** TODO Has knowledge graph
+** STARTED Fix bug with place names in ptrans not showing up
 

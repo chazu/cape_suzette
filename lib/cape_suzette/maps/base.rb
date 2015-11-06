@@ -1,23 +1,35 @@
 module CapeSuzette
   module Maps
     class Base
-      attr_accessor :contents, :doors, :name
+      attr_accessor :doors
 
-      def initialize args                     
-        @container = nil
-        @name      = args[:name]     || "void"
-        @contents  = args[:contents] || [];
-        @siblings  = [];
-        @doors     = [];
+      def initialize name: "void",
+                     contents: []
+
+        @container     = nil
+        @name          = name
+        @contents      = contents
+        @siblings      = []
+        @doors         = []
+      end
+
+      def place_name
+        @name
+      end
+
+      def place_contents
+        @contents
       end
 
       def add_room room
         @contents << room
         room.container = self
+        # Return the room
+        room
       end
 
       def container= container
-        @@container = container
+        @container = container
       end
       
       def set_location map

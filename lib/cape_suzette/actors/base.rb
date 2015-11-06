@@ -36,7 +36,7 @@ module CapeSuzette
       end
       
       def set_location map
-        map.contents << self
+        map.place_contents << self
         @location = map
       end
 
