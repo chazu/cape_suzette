@@ -25,9 +25,9 @@ module CapeSuzette
       people = [lou, kaze]
 
       #Create a map
-      world = Maps::Base.new({name: "World"})
-      room1 = world.add_room(Maps::Base.new({name: "room 1"}))
-      room2 = world.add_room(Maps::Base.new({name: "room 2"}))
+      world = World::Location.new({name: "World"})
+      room1 = world.add_room(World::Location.new({name: "room 1"}))
+      room2 = world.add_room(World::Location.new({name: "room 2"}))
       room2.connect_to_sibling room1
       
       # Put actors in the world

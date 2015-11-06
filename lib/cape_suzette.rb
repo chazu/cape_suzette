@@ -3,7 +3,7 @@ require "./lib/cape_suzette/actors/base"
 require "./lib/cape_suzette/actions/base"
 require "./lib/cape_suzette/actions/ptrans"
 require "./lib/cape_suzette/graphs/base"
-require "./lib/cape_suzette/maps/base"
+require "./lib/cape_suzette/world/location"
 require "./lib/cape_suzette/planboxes/base"
 require "./lib/cape_suzette/planboxes/delta_prox_move_self_to_location"
 require "./lib/cape_suzette/delta_acts/base"
@@ -18,7 +18,7 @@ module CapeSuzette
   include DeltaActs
   include Graphs
   include Initialization
-  include Maps
+  include World
   include Planboxes
   include Scripts
   include SigmaStates

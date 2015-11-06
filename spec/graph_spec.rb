@@ -4,7 +4,6 @@ describe CapeSuzette::Graphs::Graph do
   subject { CapeSuzette::Graphs::Graph.new }
     
   context '#vertex_exists' do
-
     it 'should return false on a new graph' do
       @pending
     end
@@ -15,7 +14,6 @@ describe CapeSuzette::Graphs::Graph do
   end
 
   context '#vertex_for_object' do
-
     it 'should return falsey value (nil) if none exists' do
       expect(subject.vertex_for_object("your face")).to eq nil
     end
@@ -44,7 +42,6 @@ describe CapeSuzette::Graphs::Graph do
   end
 
   context '#vertices_for_objects_exist?' do
-
     it 'should return false on a graph with no vertices' do
       expect(subject.vertices_for_objects_exist? "foo", "bar", "baz").to eq false
     end
@@ -71,7 +68,6 @@ describe CapeSuzette::Graphs::Graph do
   end
 
   context '#triple_exists?' do
-
     it 'should return false on an empty graph' do
       expect(subject.triple_exists? "He", :is, "grumpy").to eq false
     end

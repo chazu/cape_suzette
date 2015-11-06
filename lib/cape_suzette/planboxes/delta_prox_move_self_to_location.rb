@@ -7,8 +7,6 @@ module CapeSuzette
       
       precondition [:is, :sentient]
       precondition [:agent, :is, :motile]
-
-
     end
   end
 end

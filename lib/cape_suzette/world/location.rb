@@ -1,6 +1,6 @@
 module CapeSuzette
-  module Maps
-    class Base
+  module World
+    class Location
       attr_accessor :doors
 
       def initialize name: "void",
