@@ -4,9 +4,16 @@ module CapeSuzette
 
       attr_accessor :plan, :agent
 
+      @@activation_condition = nil
+      
+      
       def initialize(agent: actor)
         @agent = agent
         @plan = nil
+      end
+
+      def self.activate_if proc
+        @@activation_condition = proc
       end
 
       def self.descendants
@@ -17,11 +24,11 @@ module CapeSuzette
         descendants << descendant
       end
 
-      def name
-        raise NotImplementedError, "Must be implemented by subclass, fool"
+      def self.sigma_test agent
+        @@activation_condition.call(agent)
       end
 
-      def test actor
+      def name
         raise NotImplementedError, "Must be implemented by subclass, fool"
       end
 

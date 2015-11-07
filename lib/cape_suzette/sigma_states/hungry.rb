@@ -5,10 +5,8 @@ module CapeSuzette
       def name
         "Hungry"
       end
-      
-      def self.sigma_test actor
-        actor.hunger > 5
-      end
+
+      activate_if Proc.new { |actor| actor.hunger > 5 }
 
       def delta_acts
         [

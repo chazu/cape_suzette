@@ -28,13 +28,15 @@ module CapeSuzette
       end
 
       def contextualized_planboxes
-        self.class.planboxes
+        self.class.planboxes.map do |planbox|
+          planbox.new agent: @agent,
+                      sigma: @sigma
+        end
       end
 
       def execute
         plans = contextualized_planboxes
-
-        plan = plans[0].new
+        plan = plans[0]
         
         plan.execute({agent: @agent})
       end

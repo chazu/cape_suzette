@@ -10,12 +10,10 @@ module CapeSuzette
       @@validations    = []
       @@env_proc       = nil
       
-      def initialize sigma: sigma
-                     env: nil # TODO Make this &rest keyword args OR block? options?
-
-        if self.class == Base
-          raise NotImplementedError, "Base should not be instantiated, only subclassed."
-        end
+      def initialize sigma: nil,
+                     agent: nil # TODO Make this &rest keyword args OR block? options?
+        @sigma = sigma
+        @agent = agent
       end
 
       def self.validate(&block)
@@ -23,7 +21,7 @@ module CapeSuzette
       end
 
       def self.name name
-        @@name = namee
+        @@name = name
       end
       
       def self.action action
