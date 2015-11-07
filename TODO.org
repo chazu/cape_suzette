@@ -60,3 +60,13 @@ We need to be able to
 - have parameterized data passed into planbox INSTANCES from deltas
 - decompose delta acts into planboxes
 - Figure out how to prioritize/order planboxes when executing a 'strategy' (delta action)
+
+### Idea re: planboxes/reuse
+
+Since most delta actions consist of multiple planboxes, planboxes will need to be able to change the state of their parent delta action after completion. Planbox inclusion in a delta action could then be defined in terms of its requirements with respect to that specific delta action. For example, in order to find food.
+```
+planbox PickDestination, decision_proc: Proc.new { |actor| actor.location.exits.sample }
+
+planbox MoveSelfToOtherLocation, contingency: Proc.new { |delta_state| delta_state.destination } # Can only be activated if the agent has chosen a state first
+```
+Notice that we've also added a 'decision_proc' to a planbox - this could be an optional way to override default planbox behavior, but this is a can of worms that we shouldn't open yet. My thinking is that 'PickDestination' is a generic planbox that would need to be very heavily parameterized per delta action - if an actor is looking to, say, buy drugs, they wouldn't pick a destination arbitrarily, whereas if they were lost in the desert, they more than likely would. Therefore how do we get more mileage out of planboxes? Parameterize decision logic if needed. But _the decision logic for a planbox will be where the reasoning and knowledgebase search will occur_, so we don't want to lock ourselves into that highly advanced portion of the design until ready.

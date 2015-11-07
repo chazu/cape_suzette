@@ -36,8 +36,9 @@ module CapeSuzette
 
       def execute
         plans = contextualized_planboxes
+        # TODO Actually pick the relevant planbox based on the environment
         plan = plans[0]
-        
+
         plan.execute({agent: @agent})
       end
     end

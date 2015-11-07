@@ -50,6 +50,8 @@ module CapeSuzette
       end
 
       def execute options
+        # TODO Decide what you want your arguments to look like
+        # and stick to it, damnit.
         evaluated_env = @@env_proc ? @@env_proc.call(options[:agent]) : nil
         @@action.execute options, evaluated_env
       end
