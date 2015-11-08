@@ -12,6 +12,7 @@ require "./lib/cape_suzette/graphs/knowledge"
 
 require "./lib/cape_suzette/planboxes/base"
 require "./lib/cape_suzette/planboxes/move_self_to_location"
+require "./lib/cape_suzette/planboxes/pick_destination"
 require "./lib/cape_suzette/planboxes/pick_up_object"
 require "./lib/cape_suzette/planboxes/perceive_items"
 

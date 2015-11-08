@@ -8,10 +8,10 @@ module CapeSuzette
       @log.level = Logger::DEBUG
 
       # PPerceive - Learn something via sensory perception
-      def self.execute options
+      def self.execute env
         # Place the target object in the agent's 'inventory'
-        log.info("#{options[:agent].name} takes #{options[:target].name}")
-        options[:target].location = options[:agent]
+        log.info("#{env[:agent].name} takes #{env[:target].name}")
+        env[:target].location = env[:agent]
         # TODO Update agent knowledge tree - agent knows object is in their possession
       end
     end

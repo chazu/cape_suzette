@@ -10,9 +10,11 @@ module CapeSuzette
       @@validations    = []
       @@env_proc       = nil
       
-      def initialize sigma: nil,
-                     agent: nil # TODO Make this &rest keyword args OR block? options?
+      def initialize agent: nil,
+                     delta: nil,
+                     sigma: nil # TODO Make this &rest keyword args OR block? options?
         @sigma = sigma
+        @delta = delta
         @agent = agent
       end
 

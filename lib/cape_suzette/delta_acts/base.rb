@@ -6,8 +6,8 @@ module CapeSuzette
 
       attr_accessor :state
 
-      @@planboxes = [
-      ]
+      @@description = ""
+      @@planboxes = []
 
       def initialize(agent, sigma)
         @log = Logger.new(STDOUT)
@@ -20,7 +20,12 @@ module CapeSuzette
 
       @@goal_state = nil
 
-      def self.planboxes
+      def self.planbox a_planbox
+        p @@description + " " + @@planboxes.to_s
+        @@planboxes << a_planbox
+      end
+      
+      def planboxes
         @@planboxes
       end
       
@@ -32,8 +37,8 @@ module CapeSuzette
         @@goal_state
       end
 
-      def self.desc description
-        @@desc = description
+      def self.desc a_description
+        @@desc = a_description
       end
 
       def goal_state_achieved?
@@ -41,7 +46,7 @@ module CapeSuzette
       end
 
       def contextualized_planboxes
-        self.class.planboxes.map do |planbox|
+        planboxes.map do |planbox|
           planbox.new agent: @agent,
                       sigma: @sigma
         end
