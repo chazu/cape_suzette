@@ -2,6 +2,7 @@ module CapeSuzette
   module SigmaStates
     class SigmaHunger < Base
 
+      # Really? come on...DSLify this nonsense. Shouldn't it be 'desc', as well?
       def name
         "Hungry"
       end

@@ -2,6 +2,8 @@ module CapeSuzette
   module DeltaActs
     class DeltaTake < Base
 
+      desc "Take possession of an object"
+
       @@planboxes = [
         CapeSuzette::Planboxes::PickUpObject
       ]

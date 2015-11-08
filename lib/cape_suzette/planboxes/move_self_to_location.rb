@@ -1,13 +1,13 @@
 module CapeSuzette
   module Planboxes
     class MoveSelfToOtherLocation < Base
-      name "Move to another location"
+      desc "Move to another location"
       action CapeSuzette::Actions::PTrans
 
       validate { |x| x.class == Actor }
       
-      precondition [:is, :sentient]
-      precondition [:agent, :is, :motile]
+      precondition Proc.new { |agent, delta, sigma| delta.state.key? :destination }
+      # precondition [:agent, :is, :motile]
     end
   end
 end

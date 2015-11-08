@@ -2,7 +2,7 @@ module CapeSuzette
   module Planboxes
     class Base
 
-      @@name           = nil
+      @@desc           = nil
       @@action         = nil
       @@preconditions  = []
       @@postconditions = []
@@ -20,14 +20,15 @@ module CapeSuzette
         @@validations << block
       end
 
-      def self.name name
-        @@name = name
+      def self.desc description
+        @@desc = description
       end
       
       def self.action action
         @@action = action
       end
 
+      # This proc gets run and is provided to the action.
       def self.env env_proc
         @@env_proc = env_proc
       end
@@ -53,7 +54,12 @@ module CapeSuzette
         # TODO Decide what you want your arguments to look like
         # and stick to it, damnit.
         evaluated_env = @@env_proc ? @@env_proc.call(options[:agent]) : nil
-        @@action.execute options, evaluated_env
+        
+        if @@action.class == Proc
+          @@action.call(@agent, @delta, @sigma, evaluated_env)
+        else
+          @@action.execute agent, delta, sigma, evaluated_env
+        end
       end
 
       def preconditions

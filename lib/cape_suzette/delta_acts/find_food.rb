@@ -2,10 +2,12 @@ module CapeSuzette
   module DeltaActs
     class DeltaFindFood < Base
 
+      desc "Find food"
       # Change own location to the location of the target
       @@planboxes = [
+        CapeSuzette::Planboxes::PickDestination
+        CapeSuzette::Planboxes::MoveSelfToOtherLocation,
         CapeSuzette::Planboxes::PerceiveItemsAtLocation,
-        CapeSuzette::Planboxes::MoveSelfToOtherLocation
       ]
 
       @@goal_state = nil

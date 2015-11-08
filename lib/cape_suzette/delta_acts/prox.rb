@@ -1,6 +1,9 @@
 module CapeSuzette
   module DeltaActs
     class DeltaProx < Base
+
+      desc "Physically move self"
+
       # Change own location to the location of the target
       @@planboxes = [
         CapeSuzette::Planboxes::MoveSelfToOtherLocation

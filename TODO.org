@@ -72,3 +72,11 @@ planbox MoveSelfToOtherLocation, contingency: Proc.new { |delta_state| delta_sta
 Notice that we've also added a 'decision_proc' to a planbox - this could be an optional way to override default planbox behavior, but this is a can of worms that we shouldn't open yet. My thinking is that 'PickDestination' is a generic planbox that would need to be very heavily parameterized per delta action - if an actor is looking to, say, buy drugs, they wouldn't pick a destination arbitrarily, whereas if they were lost in the desert, they more than likely would. Therefore how do we get more mileage out of planboxes? Parameterize decision logic if needed. But _the decision logic for a planbox will be where the reasoning and knowledgebase search will occur_, so we don't want to lock ourselves into that highly advanced portion of the design until ready.
 
 NOTE: Forget the above crap i just said - PER MEEHAN, planboxes have preconditions, postconditions, and postactions - while we'll want to be able to add more at the delta action level as described above, its important to try and implement things as Meehan did first.
+
+### Re: 'env' on planboxes -> actions
+
+The idea with the badly-named 'env' method on Planboxes::Base was that it would transform the actor/other state and deliver it to the action - for example in the PerceiveItemsAtLocation class, it maps each item at the agent's location to a triple, and then passes those to the action, which performs the actual 'learning' of those facts...
+
+So since then I've been passing the same stuff down the chain of behavior execution: agent, delta, sigma. Also, I've decided to keep any extraneous state that needs to persist _between components of a delta action or sigma state resolution_ on the sigma state instance itself. So this begs the question - should I just put the transformation into the sigma.state hash? To do that, I'd change the env method to accept a key to store the result in, and then a proc.
+
+I think this is a bad idea because the action _doesnt need to know about all that crap_. Pete Schall's words coming out of my mouth :P BUT, we could just pass the sigma state to the action...Still too much information, I reckon...

@@ -1,6 +1,8 @@
 module CapeSuzette
   module DeltaActs
     class DeltaPerceive < Base
+
+      desc "Learn something"
       # Change own location to the location of the target
       @@planboxes = [
         CapeSuzette::Planboxes::PerceiveItemsAtLocation

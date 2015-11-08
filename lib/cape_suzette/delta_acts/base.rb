@@ -1,12 +1,21 @@
+require 'logger'
+
 module CapeSuzette
   module DeltaActs
     class Base
+
+      attr_accessor :state
+
       @@planboxes = [
       ]
 
       def initialize(agent, sigma)
+        @log = Logger.new(STDOUT)
+        @log.level = Logger::DEBUG
+        
         @agent = agent
         @sigma = sigma
+        @state = {}
       end
 
       @@goal_state = nil
@@ -22,7 +31,11 @@ module CapeSuzette
       def goal_state
         @@goal_state
       end
-      
+
+      def self.desc description
+        @@desc = description
+      end
+
       def goal_state_achieved?
         goal_state.call(@sigma)
       end
@@ -34,12 +47,22 @@ module CapeSuzette
         end
       end
 
-      def execute
-        plans = contextualized_planboxes
-        # TODO Actually pick the relevant planbox based on the environment
-        plan = plans[0]
+      def eligible_planboxes
+        contextualized_planboxes.select do |planbox|
+          planbox.preconditions.all? do |precondition|
+            precondition.call(@agent, self, @sigma)
+          end
+        end
+      end
 
-        plan.execute({agent: @agent})
+      def execute
+        binding.pry
+        plans = eligible_planboxes
+        if plans.any?
+          plan.execute({agent: @agent})
+        else
+          @log.info("In planbox #{@@desc} - no eligible planboxes")
+        end
       end
     end
   end
