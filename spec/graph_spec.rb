@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe CapeSuzette::Graphs::Graph do
   subject { CapeSuzette::Graphs::Graph.new }
-    
+  
   context '#vertex_exists' do
     it 'should return false on a new graph' do
       @pending

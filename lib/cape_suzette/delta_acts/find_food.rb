@@ -5,9 +5,9 @@ module CapeSuzette
       desc "Find food"
       # Change own location to the location of the target
 
-      planbox CapeSuzette::Planboxes::PickDestination
-      planbox CapeSuzette::Planboxes::MoveSelfToOtherLocation
-      planbox CapeSuzette::Planboxes::PerceiveItemsAtLocation
+      # planbox CapeSuzette::Planboxes::PickDestination
+      # planbox CapeSuzette::Planboxes::MoveSelfToOtherLocation
+      # planbox CapeSuzette::Planboxes::PerceiveItemsAtLocation
 
       @@goal_state = nil
 

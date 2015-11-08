@@ -4,9 +4,9 @@ module CapeSuzette
 
       desc "Learn something"
       # Change own location to the location of the target
-      @@planboxes = [
-        CapeSuzette::Planboxes::PerceiveItemsAtLocation
-      ]
+
+      # planbox CapeSuzette::Planboxes::PerceiveItemsAtLocation
+
       attr_accessor :agent, :target
       
       def initialize options

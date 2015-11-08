@@ -3,14 +3,9 @@ require 'spec_helper'
 describe CapeSuzette::Planboxes::Base do
 
   subject { CapeSuzette::Planboxes::Base }
-
   
-  it 'should yell if you try to instantiate it' do
-    expect { subject.new }.to raise_error(NotImplementedError)
-  end
-
   context '::action' do
-    it 'should respond to set_action' do
+    it 'should respond to action' do
       expect(subject).to respond_to 'action'
     end
 
@@ -21,7 +16,7 @@ describe CapeSuzette::Planboxes::Base do
     end
   end
 
-    context '::postaction' do
+  context '::postaction' do
     it 'should respond to set_postaction' do
       expect(subject).to respond_to 'postaction'
     end
@@ -45,7 +40,7 @@ describe CapeSuzette::Planboxes::Base do
     end
   end
 
-    context '::postcondition' do
+  context '::postcondition' do
     it 'should respond to postcondition' do
       expect(subject).to respond_to 'postcondition'
     end

@@ -6,8 +6,8 @@ module CapeSuzette
 
       attr_accessor :state
 
-      @@description = ""
-      @@planboxes = []
+      @description = ""
+      @planboxes = []
 
       def initialize(agent, sigma)
         @log = Logger.new(STDOUT)
@@ -18,27 +18,32 @@ module CapeSuzette
         @state = {}
       end
 
-      @@goal_state = nil
+      @goal_state = nil
 
+      # FFS this is how u do a class instance var >_<
       def self.planbox a_planbox
-        p @@description + " " + @@planboxes.to_s
-        @@planboxes << a_planbox
+        @planboxes ||= [] # But why am I having to do this?
+        @planboxes << a_planbox
       end
-      
+
+      def self.planboxes
+        @planboxes
+      end
+
       def planboxes
-        @@planboxes
+        self.class.planboxes
       end
       
       def self.goal_state expression
-        @@goal_state = expression
+        @goal_state = expression
       end
 
       def goal_state
-        @@goal_state
+        @goal_state
       end
 
       def self.desc a_description
-        @@desc = a_description
+        @desc = a_description
       end
 
       def goal_state_achieved?

@@ -4,9 +4,7 @@ module CapeSuzette
 
       desc "Take possession of an object"
 
-      @@planboxes = [
-        CapeSuzette::Planboxes::PickUpObject
-      ]
+      # planbox CapeSuzette::Planboxes::PickUpObject
 
       @@goal_state = nil
 
