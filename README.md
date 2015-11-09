@@ -1,7 +1,6 @@
 # CapeSuzette - Hackathon Edition
 
 ## Hackathon Status - _FAILED_
-![http://33.media.tumblr.com/6d24922ba16cefdb9aa37adc6c1d4022/tumblr_mjyxb4f0xz1s4htrfo1_400.gif](whomp)
 
 TODO: Write a gem description
 
