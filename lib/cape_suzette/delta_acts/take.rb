@@ -4,18 +4,13 @@ module CapeSuzette
 
       desc "Take possession of an object"
 
-      # planbox CapeSuzette::Planboxes::PickUpObject
+      planbox CapeSuzette::Planboxes::PickUpObject
 
       @@goal_state = nil
 
       attr_accessor :agent, :target
 
-      def initialize options
-        super options
-
-        @agent = options[:agent]
-        @target = options[:target]
-      end
+      goal_state Proc.new { |sigma| true }
     end
   end
 end

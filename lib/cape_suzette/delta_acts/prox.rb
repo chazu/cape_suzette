@@ -5,7 +5,7 @@ module CapeSuzette
       desc "Physically move self"
 
       # Change own location to the location of the target
-      # planbox CapeSuzette::Planboxes::MoveSelfToOtherLocation
+      planbox CapeSuzette::Planboxes::MoveSelfToOtherLocation
 
       attr_accessor :agent, :target
       

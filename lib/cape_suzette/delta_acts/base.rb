@@ -8,6 +8,7 @@ module CapeSuzette
 
       @description = ""
       @planboxes = []
+      @goal_state = nil
 
       def initialize(agent, sigma)
         @log = Logger.new(STDOUT)
@@ -18,7 +19,7 @@ module CapeSuzette
         @state = {}
       end
 
-      @goal_state = nil
+
 
       # FFS this is how u do a class instance var >_<
       def self.planbox a_planbox
@@ -38,8 +39,12 @@ module CapeSuzette
         @goal_state = expression
       end
 
-      def goal_state
+      def self.get_goal_state
         @goal_state
+      end
+
+      def goal_state
+        self.class.get_goal_state
       end
 
       def self.desc a_description
@@ -66,12 +71,13 @@ module CapeSuzette
       end
 
       def execute
-        binding.pry
         plans = eligible_planboxes
+        binding.pry
         if plans.any?
           plan.execute({agent: @agent})
+          @log.info("!!!In planbox #{@desc} - Executing #{plan}")          
         else
-          @log.info("In planbox #{@@desc} - no eligible planboxes")
+          @log.info("In planbox #{@desc} - no eligible planboxes")
         end
       end
     end

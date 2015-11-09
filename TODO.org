@@ -33,7 +33,7 @@
 *** Action Module
 
 * TO DO
-
+** TODO Add message to subclasses of Planbox so they log their own actions
 ** STARTED Make kaze find food
  - Actors evaluate options and choose strategies when sigma states activate
 ** TODO Make kaze eat food

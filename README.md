@@ -1,4 +1,8 @@
-# CapeSuzette
+# CapeSuzette - Hackathon Edition
+
+## Hackathon Status - _FAILED_
+![http://stream1.gifsoup.com/view6/3263465/talespin-o.gif](whomp)
+
 
 TODO: Write a gem description
 

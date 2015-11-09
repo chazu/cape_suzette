@@ -18,10 +18,6 @@ module CapeSuzette
         @agent = agent
       end
 
-      def self.validate(&block)
-        @@validations << block
-      end
-
       def self.desc description
         @@desc = description
       end

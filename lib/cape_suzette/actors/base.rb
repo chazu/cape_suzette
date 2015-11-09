@@ -6,6 +6,7 @@ module CapeSuzette
       
 
       attr_accessor :knowledge,
+                    :contents,
                     :sigma_states,
                     :location,
                     :name,
@@ -20,7 +21,7 @@ module CapeSuzette
 
         @log = Logger.new(STDOUT)
         @log.level = Logger::DEBUG
-        
+
         @knowledge  = CapeSuzette::Graphs::KnowledgeGraph.new
 
         @name       = args[:name]
@@ -32,6 +33,7 @@ module CapeSuzette
         @depression = args[:depression] || 0
 
         @location   = nil
+        @contents   = []
 
         @sigma_states = []
         @goal_stack   = []

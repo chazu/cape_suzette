@@ -5,7 +5,7 @@ module CapeSuzette
       desc "Learn something"
       # Change own location to the location of the target
 
-      # planbox CapeSuzette::Planboxes::PerceiveItemsAtLocation
+      planbox CapeSuzette::Planboxes::PerceiveItemsAtLocation
 
       attr_accessor :agent, :target
       

@@ -5,8 +5,6 @@ module CapeSuzette
 
       action CapeSuzette::Actions::PPerceive
 
-      validate { |x| x.class == Actor }
-
       # TODO update sigma state with this, right?
       # do/end don't work with Procs? 
       env Proc.new { |agent, delta, sigma|

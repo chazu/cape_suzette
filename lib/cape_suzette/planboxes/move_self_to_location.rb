@@ -4,8 +4,6 @@ module CapeSuzette
       desc "Move to another location"
       action CapeSuzette::Actions::PTrans
 
-      validate { |x| x.class == Actor }
-      
       precondition Proc.new { |agent, delta, sigma| delta.state.key? :destination }
       # precondition [:agent, :is, :motile]
     end
